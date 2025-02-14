@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TicketIcon, UserIcon, LogOutIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -9,6 +10,8 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
+  const { logout } = useAuth();
+
   return (
     <aside
       className={`fixed left-0 top-0 h-full bg-card border-r border-border transition-all duration-300 z-50 ${
@@ -51,6 +54,7 @@ export const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
         
         <div className="p-4 border-t border-border">
           <button
+            onClick={logout}
             className="w-full flex items-center p-2 rounded-lg hover:bg-accent transition-colors text-destructive"
           >
             <LogOutIcon size={20} />
